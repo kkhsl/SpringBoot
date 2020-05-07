@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--指定连接数据库的JDBC驱动包所在的位置，指定到你本机的完整路径给你-->
+    <classPathEntry
+            location="C:\software\javaSoftware\mySQL\connector\mysql-connector-java-5.0.5.jar"/>
+    <!--配置table表信息内容体，targetRuntime指定采用MyBatis3的版本-->
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--抑制生成注释，由于生成的注释都是英文的，可以不让它生成注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--配置数据库链接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/erp?generateSimpleParameterMetadata=true"
+                        userId="root" password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- generate Model 生成mudol类 targetPackage：指定生成类的包名 targetProject：指定生成的Modul放在哪个工程下-->
+        <javaModelGenerator targetPackage="com.hkk.springboot.datasource.domain"
+                            targetProject="src\main\java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- generate xml 生成Mybatis的mapper,xml文件 targetPackage：指定mapper.xml文件的包名 targetProject：指定生成的指定mapper.ml放在哪个工程下-->
+        <sqlMapGenerator targetPackage="mapper_xml" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- generate Mapper 生成Mybatis的mapper接口类文件，targetPackage：指定mapper接口类的包名 targetProject：指定生成的指定mapper接口类放在哪个工程下-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.hkk.springboot.datasource.mappers"
+                             targetProject="src\main\java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="exampleMethodVisibility" value="public"/>
+        </javaClientGenerator>
+        <!--数据库表名以及对应的java模型类名-->
+        <table tableName="jsh_account" domainObjectName="Account"></table>
+        <!--table tableName="jsh_accounthead" domainObjectName="AccountHead"></table>
+       <table tableName="jsh_accountitem" domainObjectName="AccountItem"></table>
+       <table tableName="jsh_depot" domainObjectName="Depot"></table>
+       <table tableName="jsh_depothead" domainObjectName="DepotHead"></table>
+       <table tableName="jsh_depotitem" domainObjectName="DepotItem"></table>
+       <table tableName="jsh_functions" domainObjectName="Functions"></table>
+       <table tableName="jsh_inoutitem" domainObjectName="InOutItem"></table>
+       <table tableName="jsh_log" domainObjectName="Log"></table>
+       <table tableName="jsh_material" domainObjectName="Material"></table>
+       <table tableName="jsh_material_extend" domainObjectName="MaterialExtend"></table>
+       <table tableName="jsh_material_stock" domainObjectName="MaterialStock"></table>
+       <table tableName="jsh_materialcategory" domainObjectName="MaterialCategory"></table>
+       <table tableName="jsh_materialproperty" domainObjectName="MaterialProperty"></table>
+       <table tableName="jsh_person" domainObjectName="Person"></table>
+       <table tableName="jsh_role" domainObjectName="Role"></table>
+       <table tableName="jsh_supplier" domainObjectName="Supplier"></table>
+       <table tableName="jsh_systemconfig" domainObjectName="SystemConfig"></table>
+       <table tableName="jsh_unit" domainObjectName="Unit"></table>
+       <table tableName="jsh_user" domainObjectName="User"></table>
+       <table tableName="jsh_userbusiness" domainObjectName="UserBusiness"></table>
+       <table tableName="jsh_serial_number" domainObjectName="SerialNumber"></table>
+       <table tableName="jsh_organization" domainObjectName="Organization"></table>
+       <table tableName="jsh_orga_user_rel" domainObjectName="OrgaUserRel"></table>
+       <table tableName="jsh_tenant" domainObjectName="Tenant"></table>
+       <table tableName="jsh_msg" domainObjectName="Msg"></table> -->
+    </context>
+</generatorConfiguration>

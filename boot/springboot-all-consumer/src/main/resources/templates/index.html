@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--添加命名空间-->
+<head>
+    <meta charset="UTF-8">
+    <title>dubbo-zookeeper</title>
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> 更改为本地样式-->
+    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!-- / 默认添加工程名-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+</head>
+<body style="margin-left:100px; margin-right: 100px;">
+<!--<p th:each="accounts : ${accounts}">-->
+    <!--<span th:text="accounts.id">id</span>-->
+    <!--<span th:text="accounts.name">name</span>-->
+    <!--<span th:text="accounts.deleteFlag">deleteFlag</span>-->
+<!--</p>-->
+<table class="table">
+    <caption>华夏ERP</caption>
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>序列号</th>
+        <th>起始金额</th>
+        <th>本期金额</th>
+        <th>评论</th>
+        <th>是否已删除</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="active" th:each="accounts : ${accounts}">
+        <td th:text="${accountsStat.count}"></td>
+        <td th:text="${accounts.id}">id</td>
+        <td th:text="${accounts.name}">name</td>
+        <td th:text="${accounts.serialno}">serialno</td>
+        <td th:text="${accounts.initialamount}">initialamount</td>
+        <td th:text="${accounts.currentamount}">currentamount</td>
+        <td th:text="${accounts.remark}">remark</td>
+        <td th:text="${accounts.deleteFlag}">deleteFlag</td>
+        <td >
+            <a th:href="@{'/account/insert?id=' + ${accounts.id}}">添加</a>
+            <a th:href="@{'/account/update?id=' + ${accounts.id}}">修改</a>
+            <a th:href="@{'/account/del?id='+${accounts.id}}">删除</a>
+        </td>
+    </tr>
+    <tr style="text-align: center">
+        <td colspan="3">
+            <span th:if="${currentPage <= 1}">
+                首页
+                上一页
+            </span>
+            <span th:if="${currentPage > 1}">
+                <a th:href="@{/account/list}"> 首页</a>
+                <a th:href="@{'/account/list?currentPage='+${currentPage - 1}}"> 上一页</a>
+            </span>
+            <span th:if="${currentPage == totalRows}">
+                    下一页
+                    尾页
+            </span>
+            <span th:if="${currentPage < totalRows}">
+                 <a th:href="@{'/account/list?currentPage='+${currentPage + 1}}"> 下一页</a>
+                <a th:href="@{'/account/list?currentPage='+${totalRows}}">  尾页</a>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
